@@ -10,8 +10,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install CocoaPods and dependencies
+    - name: List directory contents
+      run: ls -la
+
+    - name: Navigate to iOS directory and install CocoaPods
       run: |
-        sudo gem install cocoapods
         cd ios
+        ls -la
         pod install
