@@ -9,6 +9,8 @@ import {
   ListRenderItem,
 } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 const userImages = [
   'https://via.placeholder.com/150',
   'https://via.placeholder.com/150',
@@ -38,6 +40,12 @@ const UserProfile = () => {
     setIsFollowing(prevState => !prevState);
   };
 
+  const navigation = useNavigation(); // Use useNavigation para acessar a navegação
+
+  const handleOpenCamera = () => {
+    navigation.navigate('CameraScreen' as never); // Navegue para a tela CameraScreen quando o botão for pressionado
+  };
+
   const renderHeader = () => (
     <View style={styles.headerContainer}>
       <Image
@@ -57,6 +65,14 @@ const UserProfile = () => {
           {isFollowing ? 'Deixar de Seguir' : 'Seguir'}
         </Text>
       </TouchableOpacity>
+
+      <View style={styles.container}>
+      {/* Botão para abrir a câmera */}
+      <TouchableOpacity style={styles.button} onPress={handleOpenCamera}>
+        <Text style={styles.buttonText}>Abrir Câmera</Text>
+      </TouchableOpacity>
+      </View>
+      
     </View>
   );
 
@@ -121,6 +137,16 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     margin: 5,
+  },
+  button: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: 'blue',
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 
