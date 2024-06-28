@@ -7,6 +7,7 @@ import CameraScreen from './src/telaUsuario/CameraScreen';
 import Pagamento from './pagamento/pagamento';
 import PagamentoMensal from './pagamento/PagamentoMensal';
 import PagamentoAnual from './pagamento/PagamentoAnual';
+import RegisterScreen from './registrar/usuario'; // Importa a nova tela de cadastro
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,7 @@ export type RootStackParamList = {
   Pagamento: undefined;
   PagamentoMensal: undefined;
   PagamentoAnual: undefined;
+  Register: undefined; // Adiciona a rota de cadastro
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -24,6 +26,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 const HomeTabs = () => {
   return (
     <Tab.Navigator>
+      <Tab.Screen name="Register" component={RegisterScreen} />
       <Tab.Screen name="Perfil" component={UserProfile} />
       <Tab.Screen name="Camera" component={CameraScreen} />
       <Tab.Screen name="Pagamento" component={Pagamento} />
@@ -41,6 +44,7 @@ const App = () => {
         <Stack.Screen name="Pagamento" component={Pagamento} />
         <Stack.Screen name="PagamentoMensal" component={PagamentoMensal} />
         <Stack.Screen name="PagamentoAnual" component={PagamentoAnual} />
+        <Stack.Screen name="Register" component={RegisterScreen} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );
